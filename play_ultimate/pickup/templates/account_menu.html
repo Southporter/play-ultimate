@@ -1,0 +1,14 @@
+<button
+	id="account_menu"
+	class="mdl-button mdl-js-button mdl-button--icon">
+	<i class="material-icons">account_circle</i>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+	for="account_menu">
+	{% if user.is_authenticated %}
+	<li class="mdl-menu__item"><a href="{% url 'account' user %}">Account</a></li>
+	<li class="mdl-menu__item"><a href="/logout">Log Out</a></li>
+	{% else %}
+	<li class="mdl-menu__item"><a href="/login">Log In</a></li>
+	{% endif %}
+</ul>
