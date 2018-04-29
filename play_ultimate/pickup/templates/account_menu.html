@@ -6,9 +6,10 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
 	for="account_menu">
 	{% if user.is_authenticated %}
-	<li class="mdl-menu__item"><a href="{% url 'account' user %}">Account</a></li>
-	<li class="mdl-menu__item"><a href="/logout">Log Out</a></li>
+	<li class="mdl-menu__item"><a href="">Account</a></li>
+	<li class="mdl-menu__item"><a href="{% url 'games:logout' %}">Log Out</a></li>
 	{% else %}
-	<li class="mdl-menu__item"><a href="/login">Log In</a></li>
+	<li class="mdl-menu__item"><a href="{% url 'games:login' %}">Log In</a></li>
+	<li class="mdl-menu__item"><a href="{% url 'games:signup' %}">Sign Up</a></li>
 	{% endif %}
 </ul>

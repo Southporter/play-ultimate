@@ -1,0 +1,27 @@
+<form action="signup" method="POST" style="width:100%;">
+	{% csrf_token %}
+	<div style="margin: 15px">
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="username" type="text" name="username">
+			<label class="mdl-textfield__label" for="username">Username</label>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="email" type="text" name="email">
+			<label class="mdl-textfield__label" for="email">Email</label>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield">
+			<input class="mdl-textfield__input" id="password" type="password" name="password">
+			<label class="mdl-textfield__label" for="password">Password</label>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield">
+			<input class="mdl-textfield__input" id="password" type="password" name="password">
+			<label class="mdl-textfield__label" for="password">Retype Password</label>
+		</div>
+		<div style="width: 100%; display: flex; flex-direction: row-reverse">
+			<input style="min-width: 80px"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Sign Up">
+		{% if error %}
+			<span style="color: #F44336">Sorry, your username and password were not valid</span>
+		{% endif %}
+		</div>
+	</div>
+</form>
