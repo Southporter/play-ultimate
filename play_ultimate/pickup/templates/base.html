@@ -6,5 +6,9 @@
 			{% include "header.html" %}
 			{% include "drawer.html" %}
 		</div>
+		<main class="mdl-layout__content">
+			{% block content %}
+			{% endblock %}
+		</main>
 	</body>
 </html>

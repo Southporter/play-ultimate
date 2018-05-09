@@ -1,26 +1,47 @@
 <form action="signup" method="POST" style="width:100%;">
 	{% csrf_token %}
 	<div style="margin: 15px">
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" id="username" type="text" name="username">
+		<div class="mdl-textfield {% if signup_form.username.errors %} is-invalid {% endif %}mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="username" value="{{signup_form.username.value|default_if_none:""|escape}}" type="text" name="username">
 			<label class="mdl-textfield__label" for="username">Username</label>
+			<span class="mdl-textfield__error">
+				{% for error in signup_form.username.errors %}
+					{{ error|escape }}
+				{% endfor %}
+			</span>
 		</div>
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" id="email" type="text" name="email">
+		<div class="mdl-textfield {% if signup_form.email.errors %} is-invalid {% endif %}mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="email" value="{{signup_form.email.value|escape}}" type="text" name="email">
 			<label class="mdl-textfield__label" for="email">Email</label>
+			<span class="mdl-textfield__error">
+				{% for error in signup_form.email.errors %}
+					{{ error|escape }}
+				{% endfor %}
+			</span>
 		</div>
-		<div class="mdl-textfield mdl-js-textfield">
-			<input class="mdl-textfield__input" id="password" type="password" name="password">
+		<div class="mdl-textfield {% if signup_form.password1.errors %} is-invalid {% endif %}mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="password" type="password" name="password1">
 			<label class="mdl-textfield__label" for="password">Password</label>
+			<span class="mdl-textfield__error">
+				{% for error in signup_form.password1.errors %}
+					{{ error|escape }}
+				{% endfor %}
+			</span>
 		</div>
-		<div class="mdl-textfield mdl-js-textfield">
-			<input class="mdl-textfield__input" id="password" type="password" name="password">
+		<div class="mdl-textfield {% if signup_form.password2.errors %} is-invalid {% endif %}mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" id="password" type="password" name="password2">
 			<label class="mdl-textfield__label" for="password">Retype Password</label>
+			<span class="mdl-textfield__error">
+				{% for error in signup_form.password2.errors %}
+					{{ error|escape }}
+				{% endfor %}
+			</span>
 		</div>
 		<div style="width: 100%; display: flex; flex-direction: row-reverse">
 			<input style="min-width: 80px"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" value="Sign Up">
-		{% if error %}
-			<span style="color: #F44336">Sorry, your username and password were not valid</span>
+		{% if signup_form.non_field_errors %}
+
+			<p style="color: #F44336">{{signup_form.non_field_errors}}</p>
 		{% endif %}
 		</div>
 	</div>

@@ -5,15 +5,15 @@
 		<div style="height: 100vh; display: flex; flex-direction: column; align-items: center">
 			<div class="mdl-card mdl-shadow--2dp" style="margin: auto;">
 				<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-					<div class="mdl-tabs__panel {% if is_login %}is_active{% endif %}" id="login">
+					<div class="mdl-tabs__tab-bar">
+						<a href="#login" class="mdl-tabs__tab{% if is_login %} is-active{% endif %}">Login</a>
+						<a href="#sign_up" class="mdl-tabs__tab{% if is_signup %} is-active{% endif %}">Sign Up</a>
+					</div>
+					<div class="mdl-tabs__panel{% if is_login %} is-active{% endif %}" id="login">
 						{% include "./login_form.html" %}
 					</div>
-					<div class="mdl-tabs__panel {% if is_signup %}is_active{% endif %}" id="sign_up">
+					<div class="mdl-tabs__panel{% if is_signup %} is-active{% endif %}" id="sign_up">
 						{% include "./sign_up_form.html" %}
-					</div>
-					<div class="mdl-tabs__tab-bar">
-						<a href="#login" class="mdl-tabs__tab {% if is_login %}is_active{% endif %}">Login</a>
-						<a href="#sign_up" class="mdl-tabs__tab {% if is_signup %}is_active {% endif %} ">Sign Up</a>
 					</div>
 				</div>
 			</div>

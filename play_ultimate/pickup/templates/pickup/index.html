@@ -1,1 +1,12 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
+
+{% block content %}
+	<span>Rendered Something</span>
+	{% for game in games %}
+	<div class="mdl-card mdl-shadow--4dp">
+		<div class="mdl-card__title">
+			<h2 class="mdl-card__title-text">{{ game.game.name }}</h2>
+		</div>
+	</div>
+	{% endfor %}
+{% endblock %}
