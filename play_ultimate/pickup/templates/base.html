@@ -5,10 +5,16 @@
 		<div class="mdl-layout mdl-js-layout">
 			{% include "header.html" %}
 			{% include "drawer.html" %}
+			<main class="mdl-layout__content"> 
+				<div class="mdl-grid" style="height: 100vh">
+					{% include "./advertisement/left.html" %}
+					<div class="mdl-cell mdl-cell--4-col mdl-cell--6-col-phone">
+						{% block content %}
+						{% endblock %}
+					</div>
+					{% include "./advertisement/left.html" %}
+				</div>
+			</main>
 		</div>
-		<main class="mdl-layout__content">
-			{% block content %}
-			{% endblock %}
-		</main>
 	</body>
 </html>

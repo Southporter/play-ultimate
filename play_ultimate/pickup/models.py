@@ -14,11 +14,20 @@ class DayOfWeek(Enum):
     SUN = "Sunday"
 
 
+class Sport(models.Model):
+    name = models.CharField(max_length=32)
+    num_players = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Game(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL,
                                   on_delete=models.CASCADE)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

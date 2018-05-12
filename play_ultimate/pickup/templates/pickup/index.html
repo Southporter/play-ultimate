@@ -1,12 +1,21 @@
 {% extends "../base.html" %}
 
 {% block content %}
-	<span>Rendered Something</span>
+	<div style="display: flex; flex-direction: column; align-items: center;">
 	{% for game in games %}
-	<div class="mdl-card mdl-shadow--4dp">
+	<div class="mdl-card mdl-shadow--4dp" style="width: 95%; margin-bottom: 2vw">
 		<div class="mdl-card__title">
-			<h2 class="mdl-card__title-text">{{ game.game.name }}</h2>
+			<div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%">
+				<div style="display: flex; flex-direction: column;">
+					<h2 class="mdl-card__title-text">{{ game.game.name }}</h2>
+					<h4 class="mdl-card__subtitle-text">{{ game.game.location }}</h4>
+				</div>
+				<div class="mdl-card__menu">
+					<i style="border: 2px solid black; border-radius: 50%" class="material-icons">gesture</i>
+				</div>
+			</div>
 		</div>
 	</div>
 	{% endfor %}
+	</div>
 {% endblock %}
