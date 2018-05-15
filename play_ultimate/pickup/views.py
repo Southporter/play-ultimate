@@ -1,3 +1,6 @@
+from datetime import date
+import calendar
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import EmailField
@@ -29,8 +32,10 @@ class UserCreationForm(auth_forms.UserCreationForm):
 
 def index(request):
     games = GameDay.objects.all()
-    print(games)
-    context = {'games': games}
+    today = date.today()
+    print("attendees: {0}".format(games[0].attendees))
+    day_name = calendar.day_name[today.weekday()]
+    context = {'games': games, 'day': today.day, 'day_name': day_name}
     return render(request, "pickup/index.html", context)
 
 

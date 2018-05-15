@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
-	{% include "head.html" %}
+	<head>
+		<title>{% block title %}Get In the Game {% endblock %}</title>
+		<meta name="description" content="A place to find and join local pickup games. Come join a group and get out and play!" />
+		<link rel="canonical" href="https://roster.herokuapp.com" />
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_green-orange.min.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		<style>
+			button {
+				border: none;
+			}
+			{% block style %}
+			{% endblock %}
+		</style>
+	</head>
 	<body>
 		<div class="mdl-layout mdl-js-layout">
 			{% include "header.html" %}

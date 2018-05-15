@@ -39,8 +39,12 @@ class GameDay(models.Model):
         max_length=3,
         choices=[(day.name, day.value) for day in DayOfWeek]
     )
-    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
-    anonymous_attendees = models.IntegerField(default=0)
+    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                       blank=True,
+                                       related_name="+")
+    non_attendees = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                           blank=True,
+                                           related_name="+")
     start_time = models.TimeField()
     duration = models.DurationField()
 
