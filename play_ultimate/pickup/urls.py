@@ -13,4 +13,5 @@ urlpatterns = [
     path('logout', views.Logout.as_view(), name="logout"),
     path('game/<int:game_id>', views.detail, name='Game Detail'),
     path('account', views.detail, name="account"),
+    path('attendee', views.attendee, name="attendee")
 ]

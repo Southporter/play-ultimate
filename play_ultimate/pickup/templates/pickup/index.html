@@ -34,6 +34,8 @@ Games Near You
 	border-radius: 50%;
 	width: 38px;
 	height: 38px;
+	line-height: 38px;
+	font-size: 1.25em;
 }
 button {
 	background-color: #e0e0e0;
@@ -69,16 +71,42 @@ button:hover {
 			class="mdl-card__actions mdl-card--border flex-row"
 			style="justify-content: space-between;"
 		>
-			<button type="button" class="chip">
-				<div class="mdl-color--green circle">{{ game.attendees_set.all.count|default_if_none:'0' }}4</div>
+		<button type="button" onclick="addAttendee({{user.id|default_if_none:'undefined'}}, {{game.id}})()" class="chip">
+				<div class="mdl-color--green circle">{{ game.attendees.all.count|default_if_none:'0' }}</div>
 				<span class="chip__text">I'm in</span>
 			</button>
 			<button type="button" class="chip" style="flex-direction: row-reverse">
-				<div class="mdl-color--orange circle">{{ game.non_attendees_set.all.count|default_if_none:'0' }}</div>
+				<div class="mdl-color--orange circle">{{ game.non_attendees.all.count|default_if_none:'0' }}</div>
 				<div class="chip__text">I'm out</div>
 			</button>
 		</div>
 	</div>
 	{% endfor %}
 	</div>
+{% endblock %}
+
+{% block scripts %}
+
+	<script>
+		function addAttendee(attendeeId, gameId) {
+			console.debug('attending', attendeeId, gameId);
+			if (attendeeId === undefined) {
+				window.location.replace('{% url 'games:login' %}');
+			}
+			console.debug('attending', attendeeId, gameId);
+			return function(event) {
+				console.debug('event', event);
+				axios.post('{% url 'games:attendee' %}', {
+					attendee: attendeeId,
+					game: gameId,
+				}).then(function(response) {
+					console.debug('response', respons0);
+					if (response.status === '201') {
+						event.target.firstChild.innerHTML += 1;
+					}
+				});
+			}
+		}
+	</script>
+
 {% endblock %}
