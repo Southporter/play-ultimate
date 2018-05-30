@@ -1,5 +1,8 @@
 module.exports = {
-	entry: './render.jsx',
+	entry: {
+		render: './render.jsx',
+		gamesView: './entries/GamesView.jsx',
+	},
 	module: {
 		rules: [
 			{
@@ -14,8 +17,8 @@ module.exports = {
 	},
 	target: 'node',
 	output: {
-		path: __dirname,
+		path: __dirname + '/dist',
 		publicPath: '/',
-		filename: 'render.js'
+		filename: '[name].js'
 	}
 };
