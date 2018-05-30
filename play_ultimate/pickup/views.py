@@ -16,7 +16,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import forms as auth_forms
 from django.contrib.auth.models import User
 
-from .models import GameDay
+from .models import GameDay, Game
 
 
 class UserCreationForm(auth_forms.UserCreationForm):
@@ -36,17 +36,24 @@ class UserCreationForm(auth_forms.UserCreationForm):
 
 
 def index(request):
-    games = GameDay.objects.all()
+    gameDays = GameDay.objects.all()
+    games = Game.objects.all()
     today = date.today()
-    print("games: {0}".format(serialize('json', games)))
     day_name = calendar.day_name[today.weekday()]
-    context = {'games': games, 'day': today.day, 'day_name': day_name}
+    props = dumps({
+        'games': serialize('json', games),
+        'name': 'Game Day',
+        'gameDays': serialize('json', gameDays)
+        })
+    context = {'games': games, 'day': today.day,
+               'day_name': day_name, 'props': props}
     command_line_args = ['node', 'staticfiles/render.js', 'GamesView', dumps({
-        'games': serialize('json', games), 'name': 'Game Day'
+        'games': serialize('json', games),
+        'name': 'Game Day',
+        'gameDays': serialize('json', gameDays)
         })]
     process = subprocess.Popen(command_line_args, stdout=subprocess.PIPE)
     response = process.communicate()
-    print('response: {0}'.format(response))
     html = response[0].decode('utf-8').strip()
     context['content'] = html
     return render(request, "pickup/main.html", context)

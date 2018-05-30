@@ -13,6 +13,7 @@ Games Near You
 	flex-direction: row;
 	align-items: center;
 	padding: 0px;
+	margin-top: 10px;
 }
 .chip__text {
 	margin-left: 16px;
@@ -52,4 +53,14 @@ button:hover {
 
 {% block content %}
 <div id="react-root">{{ content|safe }}</div>
+{% endblock %}
+
+{% block scripts %}
+{% load static %}
+
+	<script src="{% static 'gamesView.js' %}"></script>
+	<script>
+		window.props = {{ props|safe }}
+	</script>
+
 {% endblock %}
